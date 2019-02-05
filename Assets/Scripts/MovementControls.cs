@@ -13,7 +13,6 @@ public class MovementControls : MonoBehaviour
 	void Start()
 	{
 		this.rigidbody = GetComponent<Rigidbody>();
-		Cursor.lockState = CursorLockMode.Locked;
 	}
 
 	void Update()

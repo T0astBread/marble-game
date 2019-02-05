@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 135037917602443910}
   - component: {fileID: 54583027142794568}
   - component: {fileID: 114619778532003388}
+  - component: {fileID: 114646900845432800}
   m_Layer: 0
   m_Name: Marble
   m_TagString: Untagged
@@ -112,6 +113,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e485e463da7964ea67f95d4c7e4692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1000
+  forwardAngle: 0
+--- !u!114 &114646900845432800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1788180653171406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c41b514f3a0d8eb4d8ab3519544eaad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseLockToggleKey: l
 --- !u!135 &135037917602443910
 SphereCollider:
   m_ObjectHideFlags: 1
