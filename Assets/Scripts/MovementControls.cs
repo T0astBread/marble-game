@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovementControls : MonoBehaviour
 {
-	public float speed = 1000;
+	public float speed = 2000;
 
 	public float forwardAngle;
 
@@ -15,7 +15,7 @@ public class MovementControls : MonoBehaviour
 		this.rigidbody = GetComponent<Rigidbody>();
 	}
 
-	void Update()
+	void FixedUpdate()
 	{
 		var input = GetInputVector();
 		var torque = input.Rotate(this.forwardAngle) * this.speed;
