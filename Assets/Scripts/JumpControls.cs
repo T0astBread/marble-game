@@ -20,7 +20,18 @@ public class JumpControls : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Space) && this.checkIsGrounded.IsGrounded())
 		{
-			this.rigidbody.AddForce(Vector3.up * this.rigidbody.mass * this.jumpForceFactor);
+			CancelVelocity();
+			AddJumpForce();
 		}
+	}
+
+	private void CancelVelocity()
+	{
+		this.rigidbody.velocity = new Vector3(this.rigidbody.velocity.x, 0, this.rigidbody.velocity.z);
+	}
+
+	private void AddJumpForce()
+	{
+		this.rigidbody.AddForce(Vector3.up * this.rigidbody.mass * this.jumpForceFactor);
 	}
 }
