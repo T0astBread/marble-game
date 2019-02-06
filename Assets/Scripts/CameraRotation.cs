@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class CameraRotation : MonoBehaviour
 {
+	public float minAngleX, maxAngleX;
+
 	private Transform playerTransform;
 	private MovementControls playerControls;
+	private float initialAngleX;
 
 	void Start()
 	{
 		var player = GameObject.Find("Marble");
 		this.playerTransform = player.transform;
 		this.playerControls = player.GetComponent<MovementControls>();
+		this.initialAngleX = transform.rotation.eulerAngles.x;
 	}
 
 	void Update()
@@ -24,6 +28,9 @@ public class CameraRotation : MonoBehaviour
 	{
 		var angleX = transform.rotation.eulerAngles.x - Input.GetAxis("Mouse Y");
 		var angleY = transform.rotation.eulerAngles.y + Input.GetAxis("Mouse X");
+
+		angleX = Mathf.Clamp(angleX, this.minAngleX, this.maxAngleX);
+
 		transform.rotation = Quaternion.Euler(angleX, angleY, 0);
 	}
 
