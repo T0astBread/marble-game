@@ -203,20 +203,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 216324475}
-  m_LocalRotation: {x: 0, y: 0.056954157, z: 0, w: 0.9983768}
-  m_LocalPosition: {x: 0, y: 0, z: 16.23}
-  m_LocalScale: {x: 0.59633, y: 6.5151, z: 11.068}
+  m_LocalRotation: {x: -0.13093403, y: 0.07069304, z: 0.2637181, w: 0.95305383}
+  m_LocalPosition: {x: -0.17, y: 2.87, z: 16.68}
+  m_LocalScale: {x: 0.59633, y: 9.97656, z: 19.481894}
   m_Children: []
   m_Father: {fileID: 1414410445}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 6.53, z: 0}
+  m_LocalEulerAnglesHint: {x: -16.67, y: 3.9320002, z: 30.358002}
 --- !u!65 &216324477
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 216324475}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: eee26ba1f22c5834ba3f58587e47b4de, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -793,20 +793,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2002057386}
-  m_LocalRotation: {x: -0, y: -0.056954052, z: -0, w: 0.9983768}
-  m_LocalPosition: {x: 5.54, y: 0, z: 16.27}
-  m_LocalScale: {x: 0.59633, y: 6.5151, z: 11.068002}
+  m_LocalRotation: {x: -0.12940945, y: -0.081837855, z: -0.26180944, w: 0.9528965}
+  m_LocalPosition: {x: 12.57, y: 2.9900002, z: 16.27}
+  m_LocalScale: {x: 0.59633, y: 10.203149, z: 19.549412}
   m_Children: []
   m_Father: {fileID: 1414410445}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: -6.53, z: 0}
+  m_LocalEulerAnglesHint: {x: -16.827002, y: -5.287, z: -29.943}
 --- !u!65 &2002057388
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2002057386}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: eee26ba1f22c5834ba3f58587e47b4de, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

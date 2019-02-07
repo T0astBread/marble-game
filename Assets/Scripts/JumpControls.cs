@@ -36,7 +36,7 @@ public class JumpControls : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space) && this.checkIsGrounded.IsGrounded())
+		if (Input.GetKeyDown(KeyCode.Space) && this.checkIsGrounded.IsTouchingSurface())
 		{
 			CancelVelocity();
 			AddJumpForce();
