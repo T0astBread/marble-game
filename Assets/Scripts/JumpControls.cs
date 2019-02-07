@@ -6,12 +6,17 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(CheckIsGrounded))]
 public class JumpControls : MonoBehaviour
 {
+	private const float INPUT_BUFFER_TIME = .25f;
+
 	public float jumpForceFactor;
 
 	private new Rigidbody rigidbody;
 	private CheckIsGrounded checkIsGrounded;
 
 	private ContactPoint[] contactPoints;
+
+	private bool inputIsBuffered;
+	private float lastInputTime;
 
 
 	public Vector3 jumpDirection
@@ -36,11 +41,23 @@ public class JumpControls : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space) && this.checkIsGrounded.IsTouchingSurface())
+		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			CancelVelocity();
-			AddJumpForce();
+			this.inputIsBuffered = true;
+			this.lastInputTime = Time.time;
 		}
+
+		float timeSinceLastInput = Time.time - this.lastInputTime;
+		if (this.inputIsBuffered && timeSinceLastInput > INPUT_BUFFER_TIME)
+		{
+			this.inputIsBuffered = false;
+		}
+	}
+
+	private void Jump()
+	{
+		CancelVelocity();
+		AddJumpForce();
 	}
 
 	private void CancelVelocity()
@@ -53,8 +70,23 @@ public class JumpControls : MonoBehaviour
 		this.rigidbody.AddForce(this.jumpDirection * this.rigidbody.mass * this.jumpForceFactor);
 	}
 
+	void OnCollisionEnter(Collision collision)
+	{
+		OnCollision(collision);
+	}
+
 	void OnCollisionStay(Collision collision)
 	{
+		OnCollision(collision);
+	}
+
+	private void OnCollision(Collision collision)
+	{
 		this.contactPoints = collision.contacts;
+
+		if(this.inputIsBuffered)
+		{
+			Jump();
+		}
 	}
 }
