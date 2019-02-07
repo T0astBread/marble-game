@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(CheckIsGrounded))]
@@ -9,6 +10,23 @@ public class JumpControls : MonoBehaviour
 
 	private new Rigidbody rigidbody;
 	private CheckIsGrounded checkIsGrounded;
+
+	private ContactPoint[] contactPoints;
+
+
+	public Vector3 jumpDirection
+	{
+		get
+		{
+			var jumpDir = contactPoints
+				.Select(c => c.normal)
+				.Aggregate((n1, n2) => n1 + n2)
+				.normalized;
+			Debug.DrawRay(transform.position, jumpDir, Color.magenta, 1);
+			return jumpDir;
+		}
+	}
+
 
 	void Start()
 	{
@@ -32,6 +50,11 @@ public class JumpControls : MonoBehaviour
 
 	private void AddJumpForce()
 	{
-		this.rigidbody.AddForce(Vector3.up * this.rigidbody.mass * this.jumpForceFactor);
+		this.rigidbody.AddForce(this.jumpDirection * this.rigidbody.mass * this.jumpForceFactor);
+	}
+
+	void OnCollisionStay(Collision collision)
+	{
+		this.contactPoints = collision.contacts;
 	}
 }
