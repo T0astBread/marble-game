@@ -18,6 +18,9 @@ public class JumpControls : MonoBehaviour
 	private bool inputIsBuffered;
 	private float lastInputTime;
 
+	private bool impactIsBuffered;
+	private float lastImpactTime;
+
 
 	public Vector3 jumpDirection
 	{
@@ -47,10 +50,21 @@ public class JumpControls : MonoBehaviour
 			this.lastInputTime = Time.time;
 		}
 
+		float timeSinceLastImpact = Time.time - this.lastImpactTime;
+		if (timeSinceLastImpact > INPUT_BUFFER_TIME)
+		{
+			this.impactIsBuffered = false;
+		}
+
 		float timeSinceLastInput = Time.time - this.lastInputTime;
 		if (this.inputIsBuffered && timeSinceLastInput > INPUT_BUFFER_TIME)
 		{
 			this.inputIsBuffered = false;
+		}
+
+		if (this.inputIsBuffered && this.impactIsBuffered)
+		{
+			Jump();
 		}
 	}
 
@@ -58,6 +72,9 @@ public class JumpControls : MonoBehaviour
 	{
 		CancelVelocity();
 		AddJumpForce();
+
+		this.impactIsBuffered = false;
+		this.inputIsBuffered = false;
 	}
 
 	private void CancelVelocity()
@@ -84,9 +101,14 @@ public class JumpControls : MonoBehaviour
 	{
 		this.contactPoints = collision.contacts;
 
-		if(this.inputIsBuffered)
+		if (this.inputIsBuffered)
 		{
 			Jump();
+		}
+		else
+		{
+			this.impactIsBuffered = true;
+			this.lastImpactTime = Time.time;
 		}
 	}
 }
