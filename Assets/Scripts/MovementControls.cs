@@ -27,11 +27,8 @@ public class MovementControls : MonoBehaviour
 		var input = GetInputVector();
 		var rotatedInput = input.Rotate(this.forwardAngle);
 
-		if (this.checkIsGrounded.IsGrounded())
-		{
-			ApplyRollTorque(rotatedInput);
-		}
-		else
+		ApplyRollTorque(rotatedInput);
+		if (!this.checkIsGrounded.IsGrounded())
 		{
 			ApplyAirMovementForce(rotatedInput);
 		}
