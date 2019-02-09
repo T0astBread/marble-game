@@ -13,6 +13,7 @@ public class ToggleMouseLock : MonoBehaviour
 
 	void Update()
 	{
+		Cursor.visible = Cursor.lockState != CursorLockMode.Locked;
 		if (Input.GetKeyDown(this.mouseLockToggleKey))
 		{
 			Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? CursorLockMode.None : CursorLockMode.Locked;
