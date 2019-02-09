@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -13,13 +14,10 @@ public class JumpControls : MonoBehaviour
 	private new Rigidbody rigidbody;
 	private CheckIsGrounded checkIsGrounded;
 
-	private ContactPoint[] contactPoints;
+	private Dictionary<string, SavedContactPoints> contactPoints = new Dictionary<string, SavedContactPoints>();
 
 	private bool inputIsBuffered;
 	private float lastInputTime;
-
-	private bool impactIsBuffered;
-	private float lastImpactTime;
 
 
 	public Vector3 jumpDirection
@@ -27,6 +25,7 @@ public class JumpControls : MonoBehaviour
 		get
 		{
 			var jumpDir = contactPoints
+				.SelectMany(c => c.Value.contactPoints)
 				.Select(c => c.normal)
 				.Aggregate((n1, n2) => n1 + n2)
 				.normalized;
@@ -50,19 +49,13 @@ public class JumpControls : MonoBehaviour
 			this.lastInputTime = Time.time;
 		}
 
-		float timeSinceLastImpact = Time.time - this.lastImpactTime;
-		if (timeSinceLastImpact > INPUT_BUFFER_TIME)
-		{
-			this.impactIsBuffered = false;
-		}
-
 		float timeSinceLastInput = Time.time - this.lastInputTime;
 		if (this.inputIsBuffered && timeSinceLastInput > INPUT_BUFFER_TIME)
 		{
 			this.inputIsBuffered = false;
 		}
 
-		if (this.inputIsBuffered && this.impactIsBuffered)
+		if (this.inputIsBuffered)
 		{
 			Jump();
 		}
@@ -70,11 +63,48 @@ public class JumpControls : MonoBehaviour
 
 	private void Jump()
 	{
+		if (!this.contactPoints.Any())
+		{
+			return;
+		}
+
+		FilterContactPoints();
+
+		if (!this.contactPoints.Any())
+		{
+			return;
+		}
+
+#if UNITY_EDITOR
+		Debug.Log("Jumping off of " + contactPoints.Count + " objects: " + string.Join(", ", contactPoints.Select(c => c.Key).ToArray()));
+#endif
+
 		CancelVelocity();
 		AddJumpForce();
 
-		this.impactIsBuffered = false;
 		this.inputIsBuffered = false;
+
+		this.contactPoints.Clear();
+	}
+
+	private void FilterContactPoints()
+	{
+		HashSet<string> touchingGameObjects = GetTouchingGameObjects();
+		this.contactPoints = this.contactPoints
+			.Where(c => Time.time - c.Value.contactTime <= INPUT_BUFFER_TIME)
+			.Where(c => touchingGameObjects.Contains(c.Key))
+			.ToDictionary(c => c.Key, c => c.Value);
+	}
+
+	private HashSet<string> GetTouchingGameObjects()
+	{
+		var touchingColliders = Physics.OverlapSphere(transform.position, 2);
+		var touchingGameObjects = new HashSet<string>();
+		foreach (var collider in touchingColliders)
+		{
+			touchingGameObjects.Add(collider.gameObject.name);
+		}
+		return touchingGameObjects;
 	}
 
 	private void CancelVelocity()
@@ -99,16 +129,22 @@ public class JumpControls : MonoBehaviour
 
 	private void OnCollision(Collision collision)
 	{
-		this.contactPoints = collision.contacts;
+		this.contactPoints[collision.gameObject.name] = new SavedContactPoints
+		{
+			contactTime = Time.time,
+			contactPoints = collision.contacts
+		};
 
 		if (this.inputIsBuffered)
 		{
 			Jump();
 		}
-		else
-		{
-			this.impactIsBuffered = true;
-			this.lastImpactTime = Time.time;
-		}
+	}
+
+
+	struct SavedContactPoints
+	{
+		public float contactTime { get; set; }
+		public ContactPoint[] contactPoints { get; set; }
 	}
 }
