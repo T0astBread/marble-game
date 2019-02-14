@@ -1,22 +1,29 @@
 fileFormatVersion: 2
-guid: 72964e780d566f44b837bf38690d49e4
+guid: 8a723b787d3447440bb7f345af74349e
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Plane
+    100004: Plane.001
+    100006: Sphere
     400000: //RootNode
-    2100000: lowpoly
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Icosphere
-    7400000: Default Take
-    9500000: //RootNode
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lowpoly
-    second: {fileID: 2100000, guid: 0c4cfdf370655ff4b84833ce50e089ec, type: 2}
+    400002: Plane
+    400004: Plane.001
+    400006: Sphere
+    2100000: glass__inner_pattern.002
+    2100002: Material.001
+    2100004: glass__inner_pattern
+    2300000: Plane
+    2300002: Plane.001
+    2300004: Sphere
+    3300000: Plane
+    3300002: Plane.001
+    3300004: Sphere
+    4300000: Plane
+    4300002: Sphere
+    4300004: Plane.001
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -68,7 +75,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -93,7 +100,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
