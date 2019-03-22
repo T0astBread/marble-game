@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Lift : MonoBehaviour
@@ -9,34 +10,49 @@ public class Lift : MonoBehaviour
 	public float forwardDuration, backwardDuration;
 	public float startSleepTime, retractSleepTime;
 	public float forwardImpulseStrength = 200;
+	public float backwardImpulseStrength = 200;
 
 	private Rigidbody rigidbody;
+	private CollisionCache forwardPushColliders, backwardPushColliders;
 
 	IEnumerator Start()
 	{
 		this.rigidbody = GetComponent<Rigidbody>();
+		this.forwardPushColliders = FindPushColliders("Forward");
+		this.backwardPushColliders = FindPushColliders("Backward");
+
 		var start = transform.position;
 
 		while (true)
 		{
-			yield return SleepAndMove(this.startSleepTime, this.destinationOffset, this.forwardDuration);
+			yield return DoDirectionalStep(this.startSleepTime, this.forwardPushColliders, this.destinationOffset, this.forwardDuration, this.forwardImpulseStrength);
 			transform.position = start + this.destinationOffset;
 
-			var movementSpeedVec = this.destinationOffset / this.forwardDuration;
-			AddImpulseToObjectsOnPlatform(movementSpeedVec * this.forwardImpulseStrength);
-
-			yield return SleepAndMove(this.retractSleepTime, -this.destinationOffset, this.backwardDuration);
+			yield return DoDirectionalStep(this.retractSleepTime, this.backwardPushColliders, -this.destinationOffset, this.backwardDuration, this.backwardImpulseStrength);
 			transform.position = start;
 		}
 	}
 
-	private IEnumerator SleepAndMove(float sleepDuration, Vector3 offset, float movementDuration)
+	private CollisionCache FindPushColliders(string name)
 	{
-		yield return new WaitForSeconds(sleepDuration);
-		yield return Move(offset, movementDuration);
+		return GetComponentsInChildren<CollisionCache>()
+			.Where(c => c.gameObject.name == "PushColliders_" + name)
+			.FirstOrDefault();
 	}
 
-	private IEnumerator Move(Vector3 offset, float movementDuration)
+	private IEnumerator DoDirectionalStep(float sleepDuration, CollisionCache pushColliders, Vector3 offset, float movementDuration, float impulseStrength)
+	{
+		yield return new WaitForSeconds(sleepDuration);
+		yield return Move(pushColliders, offset, movementDuration);
+
+		if (pushColliders != null)
+		{
+			var movementSpeedVec = offset / movementDuration;
+			AddImpulseToObjectsOnPlatform(pushColliders, movementSpeedVec * impulseStrength);
+		}
+	}
+
+	private IEnumerator Move(CollisionCache pushColliders, Vector3 offset, float movementDuration)
 	{
 		float startTime = Time.time;
 		float currentTime = 0;
@@ -51,43 +67,42 @@ public class Lift : MonoBehaviour
 			float deltaProgress = Time.deltaTime / movementDuration;
 			var movement = offset * deltaProgress;
 
-			MoveObjectsOnPlatform(movement);
+			if (pushColliders != null)
+			{
+				MoveObjectsOnPlatform(pushColliders, movement);
+			}
 			transform.position += movement;
 
 			yield return null;
 		}
 	}
 
-	private void MoveObjectsOnPlatform(Vector3 movement)
+	private void MoveObjectsOnPlatform(CollisionCache pushColliders, Vector3 movement)
 	{
-		ForObjectsOnPlatform((collider, colliderBody) =>
+		ForObjectsOnPlatform(pushColliders, (collider, colliderBody) =>
 		{
 			colliderBody.transform.position += movement;
 			colliderBody.AddForce(movement, ForceMode.Acceleration);
 		});
+
+		Debug.DrawLine(transform.position, transform.position + movement, Color.yellow, .1f);
+		Debug.DrawLine(transform.position + movement, transform.position + movement + Vector3.up, Color.blue, .1f);
 	}
 
-	private void AddImpulseToObjectsOnPlatform(Vector3 impulse)
+	private void AddImpulseToObjectsOnPlatform(CollisionCache pushColliders, Vector3 impulse)
 	{
-		ForObjectsOnPlatform((collider, colliderBody) =>
+		ForObjectsOnPlatform(pushColliders, (collider, colliderBody) =>
 			colliderBody.AddForce(impulse, ForceMode.Impulse)
 		);
 	}
 
-	private void ForObjectsOnPlatform(Action<Collider, Rigidbody> action)
+	private void ForObjectsOnPlatform(CollisionCache colliders, Action<Collider, Rigidbody> action)
 	{
-		float overlapMargin = .5f;
-		var halfOverlapScale = new Vector3(transform.localScale.x / 2 - overlapMargin, .5f, transform.localScale.z / 2 - overlapMargin);
-		var overlapCenterPosition = transform.position + transform.up;
-
-		Debug.DrawLine(overlapCenterPosition - halfOverlapScale, overlapCenterPosition + halfOverlapScale, Color.red);
-
-		var collidersOnPlatform = Physics.OverlapBox(overlapCenterPosition, halfOverlapScale, transform.rotation);
-
+		var collidersOnPlatform = colliders.collidingColliders;
 
 		foreach (var collider in collidersOnPlatform)
 		{
-			if (collider.gameObject == gameObject)
+			if (collider.gameObject == gameObject || collider.GetComponent<Lift>() != null)
 			{
 				continue;
 			}
