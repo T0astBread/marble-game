@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Lift : MonoBehaviour
+public class MovingPlatform : MonoBehaviour
 {
 	public Vector3 destinationOffset;
 	public float forwardDuration, backwardDuration;
@@ -102,7 +102,7 @@ public class Lift : MonoBehaviour
 
 		foreach (var collider in collidersOnPlatform)
 		{
-			if (collider.gameObject == gameObject || collider.GetComponent<Lift>() != null)
+			if (collider.gameObject == gameObject || collider.GetComponent<MovingPlatform>() != null)
 			{
 				continue;
 			}
