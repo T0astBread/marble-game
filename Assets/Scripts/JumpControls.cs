@@ -170,6 +170,7 @@ public class JumpControls : MonoBehaviour
 		this.rigidbody.AddForce(impulseJump, ForceMode.Impulse);
 
 		this.movingPlatformImpulseIsBuffered = false;
+		this.inputIsBuffered = false;
 	}
 
 	void OnCollisionEnter(Collision collision)
