@@ -104,7 +104,8 @@ public class MovingPlatform : MonoBehaviour
 
 	private void AddImpulseToObjectsOnPlatform(CollisionCache pushColliders, Vector3 impulse)
 	{
-		ForObjectsOnPlatform(pushColliders, (collider, colliderBody) => {
+		ForObjectsOnPlatform(pushColliders, (collider, colliderBody) =>
+		{
 			float amplification;
 			if (!this.impulseAmplifications.TryGetValue(collider.gameObject, out amplification))
 			{
@@ -142,13 +143,6 @@ public class MovingPlatform : MonoBehaviour
 
 	public void RequestImpulseAmplification(GameObject target, float amplification)
 	{
-		if (!this.impulseAmplifications.ContainsKey(target))
-		{
-			this.impulseAmplifications[target] = amplification;
-		}
-		else
-		{
-			this.impulseAmplifications[target] *= amplification;
-		}
+		this.impulseAmplifications[target] = amplification;
 	}
 }
