@@ -4,20 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(CheckIsGrounded))]
+[RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(CheckIsGrounded)), RequireComponent(typeof(CheckIsOnMovingPlatform))]
 public class JumpControls : MonoBehaviour
 {
-	private const float INPUT_BUFFER_TIME = .25f;
+	private const float INPUT_BUFFER_TIME = .25f, PLATFORM_IMPULSE_BUFFER_TIME = .25f;
+	private const float PLATFROM_JUMP_AMP_MIN_PROGRESS = .25f, PLATFORM_JUMP_AMPLIFICATION = 1.5f;
 
 	public float jumpForceFactor;
 
 	private new Rigidbody rigidbody;
 	private CheckIsGrounded checkIsGrounded;
+	private CheckIsOnMovingPlatform checkIsOnMovingPlatform;
 
 	private Dictionary<string, SavedContactPoints> contactPoints = new Dictionary<string, SavedContactPoints>();
 
 	private bool inputIsBuffered;
 	private float lastInputTime;
+
+	private bool movingPlatformImpulseIsBuffered;
+	private Vector3 bufferedMovingPlatformImpulse;
+	private float lastMovingPlatformImpulseTime;
 
 
 	public Vector3 jumpDirection
@@ -39,14 +45,33 @@ public class JumpControls : MonoBehaviour
 	{
 		this.rigidbody = GetComponent<Rigidbody>();
 		this.checkIsGrounded = GetComponent<CheckIsGrounded>();
+		this.checkIsOnMovingPlatform = GetComponent<CheckIsOnMovingPlatform>();
 	}
 
 	void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			this.inputIsBuffered = true;
-			this.lastInputTime = Time.time;
+			if (this.checkIsOnMovingPlatform.isOnMovingPlatform && this.checkIsOnMovingPlatform.platform.currentProgress > PLATFROM_JUMP_AMP_MIN_PROGRESS)
+			{
+				Debug.Log(this.checkIsOnMovingPlatform.platform.currentProgress);
+				Debug.Log(name + " requested impulse amplification from moving platform");
+				this.checkIsOnMovingPlatform.platform.RequestImpulseAmplification(gameObject, PLATFORM_JUMP_AMPLIFICATION);
+			}
+			else
+			{
+				this.inputIsBuffered = true;
+				this.lastInputTime = Time.time;
+			}
+		}
+
+		if (this.bufferedMovingPlatformImpulse != null)
+		{
+			float timeSinceLastMovingPlatformImpulse = Time.time - this.lastMovingPlatformImpulseTime;
+			if (timeSinceLastMovingPlatformImpulse > PLATFORM_IMPULSE_BUFFER_TIME)
+			{
+				this.movingPlatformImpulseIsBuffered = false;
+			}
 		}
 
 		float timeSinceLastInput = Time.time - this.lastInputTime;
@@ -63,17 +88,30 @@ public class JumpControls : MonoBehaviour
 
 	private void Jump()
 	{
+		if (CanJumpFromMovingPlatformImpulse())
+		{
+			JumpFromMovingPlatformImpulse();
+		}
+		else if (CanJumpFromGround())
+		{
+			JumpFromGround();
+		}
+	}
+
+	private bool CanJumpFromGround()
+	{
 		if (!this.contactPoints.Any())
 		{
-			return;
+			return false;
 		}
 
 		FilterContactPoints();
 
-		if (!this.contactPoints.Any())
-		{
-			return;
-		}
+		return this.contactPoints.Any();
+	}
+
+	private void JumpFromGround()
+	{
 
 #if UNITY_EDITOR
 		Debug.Log("Jumping off of " + contactPoints.Count + " objects: " + string.Join(", ", contactPoints.Select(c => c.Key).ToArray()));
@@ -117,6 +155,23 @@ public class JumpControls : MonoBehaviour
 		this.rigidbody.AddForce(this.jumpDirection * this.rigidbody.mass * this.jumpForceFactor);
 	}
 
+	private bool CanJumpFromMovingPlatformImpulse()
+	{
+		return this.movingPlatformImpulseIsBuffered;
+	}
+
+	private void JumpFromMovingPlatformImpulse()
+	{
+		Debug.Log("Jumping off of moving platform impulse");
+
+		var impulseJump = this.bufferedMovingPlatformImpulse * (PLATFORM_JUMP_AMPLIFICATION - 1);
+		Debug.DrawRay(transform.position, impulseJump, Color.green, 1);
+
+		this.rigidbody.AddForce(impulseJump, ForceMode.Impulse);
+
+		this.movingPlatformImpulseIsBuffered = false;
+	}
+
 	void OnCollisionEnter(Collision collision)
 	{
 		OnCollision(collision);
@@ -138,6 +193,19 @@ public class JumpControls : MonoBehaviour
 		if (this.inputIsBuffered)
 		{
 			Jump();
+		}
+	}
+
+	void OnMovingPlatformImpulse(object[] args)
+	{
+		Vector3 impulse = (Vector3)args[0];
+		float amplification = (float)args[1];
+
+		if (amplification == 1)
+		{
+			this.movingPlatformImpulseIsBuffered = true;
+			this.bufferedMovingPlatformImpulse = impulse;
+			this.lastMovingPlatformImpulseTime = Time.time;
 		}
 	}
 

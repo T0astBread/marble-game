@@ -12,8 +12,16 @@ public class MovingPlatform : MonoBehaviour
 	public float forwardImpulseStrength = 200;
 	public float backwardImpulseStrength = 200;
 
+	[HideInInspector]
+	public Vector3 impulseToBeApplied;
+	[HideInInspector]
+	public float currentProgress;
+	[HideInInspector]
+	public bool isMovingForward;
+
 	private Rigidbody rigidbody;
 	private CollisionCache forwardPushColliders, backwardPushColliders;
+	private Dictionary<GameObject, float> impulseAmplifications = new Dictionary<GameObject, float>();
 
 	IEnumerator Start()
 	{
@@ -25,9 +33,11 @@ public class MovingPlatform : MonoBehaviour
 
 		while (true)
 		{
+			this.isMovingForward = true;
 			yield return DoDirectionalStep(this.startSleepTime, this.forwardPushColliders, this.destinationOffset, this.forwardDuration, this.forwardImpulseStrength);
 			transform.position = start + this.destinationOffset;
 
+			this.isMovingForward = false;
 			yield return DoDirectionalStep(this.retractSleepTime, this.backwardPushColliders, -this.destinationOffset, this.backwardDuration, this.backwardImpulseStrength);
 			transform.position = start;
 		}
@@ -43,12 +53,12 @@ public class MovingPlatform : MonoBehaviour
 	private IEnumerator DoDirectionalStep(float sleepDuration, CollisionCache pushColliders, Vector3 offset, float movementDuration, float impulseStrength)
 	{
 		yield return new WaitForSeconds(sleepDuration);
+		this.impulseToBeApplied = (offset / movementDuration) * impulseStrength;
 		yield return Move(pushColliders, offset, movementDuration);
 
 		if (pushColliders != null)
 		{
-			var movementSpeedVec = offset / movementDuration;
-			AddImpulseToObjectsOnPlatform(pushColliders, movementSpeedVec * impulseStrength);
+			AddImpulseToObjectsOnPlatform(pushColliders, this.impulseToBeApplied);
 		}
 	}
 
@@ -59,6 +69,8 @@ public class MovingPlatform : MonoBehaviour
 		while (true)
 		{
 			currentTime = Time.time - startTime;
+			this.currentProgress = currentTime / movementDuration;
+
 			if (currentTime >= movementDuration)
 			{
 				break;
@@ -75,6 +87,7 @@ public class MovingPlatform : MonoBehaviour
 
 			yield return null;
 		}
+		this.currentProgress = 0;
 	}
 
 	private void MoveObjectsOnPlatform(CollisionCache pushColliders, Vector3 movement)
@@ -91,9 +104,21 @@ public class MovingPlatform : MonoBehaviour
 
 	private void AddImpulseToObjectsOnPlatform(CollisionCache pushColliders, Vector3 impulse)
 	{
-		ForObjectsOnPlatform(pushColliders, (collider, colliderBody) =>
-			colliderBody.AddForce(impulse, ForceMode.Impulse)
-		);
+		ForObjectsOnPlatform(pushColliders, (collider, colliderBody) => {
+			float amplification;
+			if (!this.impulseAmplifications.TryGetValue(collider.gameObject, out amplification))
+			{
+				amplification = 1;
+			}
+			Debug.Log("Impulse amp for " + collider.name + ": " + amplification);
+
+			impulse *= amplification;
+			colliderBody.AddForce(impulse, ForceMode.Impulse);
+
+			collider.BroadcastMessage("OnMovingPlatformImpulse", new object[] { impulse, amplification }, SendMessageOptions.DontRequireReceiver);
+		});
+
+		this.impulseAmplifications.Clear();
 	}
 
 	private void ForObjectsOnPlatform(CollisionCache colliders, Action<Collider, Rigidbody> action)
@@ -112,6 +137,18 @@ public class MovingPlatform : MonoBehaviour
 			{
 				action(collider, colliderBody);
 			}
+		}
+	}
+
+	public void RequestImpulseAmplification(GameObject target, float amplification)
+	{
+		if (!this.impulseAmplifications.ContainsKey(target))
+		{
+			this.impulseAmplifications[target] = amplification;
+		}
+		else
+		{
+			this.impulseAmplifications[target] *= amplification;
 		}
 	}
 }
