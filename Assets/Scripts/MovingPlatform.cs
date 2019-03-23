@@ -11,6 +11,7 @@ public class MovingPlatform : MonoBehaviour
 	public float startSleepTime, retractSleepTime;
 	public float forwardImpulseStrength = 200;
 	public float backwardImpulseStrength = 200;
+	public bool canAmplifyJump = true;
 
 	[HideInInspector]
 	public Vector3 impulseToBeApplied;
@@ -116,7 +117,7 @@ public class MovingPlatform : MonoBehaviour
 			impulse *= amplification;
 			colliderBody.AddForce(impulse, ForceMode.Impulse);
 
-			collider.BroadcastMessage("OnMovingPlatformImpulse", new object[] { impulse, amplification }, SendMessageOptions.DontRequireReceiver);
+			collider.BroadcastMessage("OnMovingPlatformImpulse", new object[] { this, impulse, amplification }, SendMessageOptions.DontRequireReceiver);
 		});
 
 		this.impulseAmplifications.Clear();
@@ -143,6 +144,7 @@ public class MovingPlatform : MonoBehaviour
 
 	public void RequestImpulseAmplification(GameObject target, float amplification)
 	{
+		Debug.Log("Impulse amp of " + amplification + " for " + target.name + " has been requested from " + name);
 		this.impulseAmplifications[target] = amplification;
 	}
 }

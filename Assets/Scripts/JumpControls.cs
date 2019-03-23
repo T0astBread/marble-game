@@ -52,11 +52,9 @@ public class JumpControls : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			if (this.checkIsOnMovingPlatform.isOnMovingPlatform && this.checkIsOnMovingPlatform.platform.currentProgress > PLATFROM_JUMP_AMP_MIN_PROGRESS)
+			if (CanRequestPlatformImpulseAmplification())
 			{
-				Debug.Log(this.checkIsOnMovingPlatform.platform.currentProgress);
-				Debug.Log(name + " requested impulse amplification from moving platform");
-				this.checkIsOnMovingPlatform.platform.RequestImpulseAmplification(gameObject, PLATFORM_JUMP_AMPLIFICATION);
+				RequestPlatformImpulseAmplification();
 			}
 			else
 			{
@@ -84,6 +82,18 @@ public class JumpControls : MonoBehaviour
 		{
 			Jump();
 		}
+	}
+
+	private bool CanRequestPlatformImpulseAmplification()
+	{
+		return this.checkIsOnMovingPlatform.isOnMovingPlatform &&
+			this.checkIsOnMovingPlatform.platform.canAmplifyJump &&
+			this.checkIsOnMovingPlatform.platform.currentProgress > PLATFROM_JUMP_AMP_MIN_PROGRESS;
+	}
+
+	private void RequestPlatformImpulseAmplification()
+	{
+		this.checkIsOnMovingPlatform.platform.RequestImpulseAmplification(gameObject, PLATFORM_JUMP_AMPLIFICATION);
 	}
 
 	private void Jump()
@@ -199,10 +209,11 @@ public class JumpControls : MonoBehaviour
 
 	void OnMovingPlatformImpulse(object[] args)
 	{
-		Vector3 impulse = (Vector3)args[0];
-		float amplification = (float)args[1];
+		var platform = args[0] as MovingPlatform;
+		Vector3 impulse = (Vector3)args[1];
+		float amplification = (float)args[2];
 
-		if (amplification == 1)
+		if (platform.canAmplifyJump && amplification == 1)
 		{
 			this.movingPlatformImpulseIsBuffered = true;
 			this.bufferedMovingPlatformImpulse = impulse;
