@@ -11,6 +11,7 @@ public class JumpControls : MonoBehaviour
 	private const float PLATFROM_JUMP_AMP_MIN_PROGRESS = .25f, PLATFORM_JUMP_AMPLIFICATION = 1.5f;
 
 	public float jumpForceFactor;
+	public bool jumpIsDisabled;
 
 	private new Rigidbody rigidbody;
 	private CheckIsGrounded checkIsGrounded;
@@ -50,6 +51,11 @@ public class JumpControls : MonoBehaviour
 
 	void Update()
 	{
+		if (this.jumpIsDisabled)
+		{
+			return;
+		}
+
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			if (CanRequestPlatformImpulseAmplification())
@@ -219,6 +225,16 @@ public class JumpControls : MonoBehaviour
 			this.bufferedMovingPlatformImpulse = impulse;
 			this.lastMovingPlatformImpulseTime = Time.time;
 		}
+	}
+
+	void DisableMovement()
+	{
+		this.jumpIsDisabled = true;
+	}
+
+	void EnableMovement()
+	{
+		this.jumpIsDisabled = false;
 	}
 
 

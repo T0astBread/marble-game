@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteractionControls : MonoBehaviour
 {
-	private GameObject currentInteractableObject;
+	private InteractiveObject currentInteractiveObject;
 	private JumpControls jumpControls;
 
 	void Start()
@@ -14,16 +14,16 @@ public class InteractionControls : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space) && this.currentInteractableObject != null)
+		if (Input.GetKeyDown(KeyCode.Space) && this.currentInteractiveObject != null)
 		{
-			Debug.Log(this.currentInteractableObject.name);
-			this.currentInteractableObject.SendMessageUpwards("StartInteraction", gameObject);
+			Debug.Log(this.currentInteractiveObject.name);
+			this.currentInteractiveObject.StartInteraction(gameObject);
 		}
 	}
 
-	void OnInteractiveObjectEnter(GameObject interactiveObject)
+	void OnInteractiveObjectEnter(GameObject interactionColliders)
 	{
-		this.currentInteractableObject = interactiveObject;
+		this.currentInteractiveObject = interactionColliders.GetComponentInParent<InteractiveObject>();
 
 		if (this.jumpControls != null)
 		{
@@ -31,13 +31,19 @@ public class InteractionControls : MonoBehaviour
 		}
 	}
 
-	void OnInteractiveObjectExit(GameObject interactiveObject)
+	void OnInteractiveObjectExit(GameObject interactionColliders)
 	{
-		this.currentInteractableObject = null;
+		this.currentInteractiveObject = null;
 
 		if (this.jumpControls != null)
 		{
 			this.jumpControls.enabled = true;
 		}
+	}
+
+	void OnInteractionFinish()
+	{
+		this.currentInteractiveObject.ExitInteractiveZone();
+		this.currentInteractiveObject = null;
 	}
 }
