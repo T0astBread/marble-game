@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: f38b11fc60d44e84a8cd54d1dbd66845
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Manifont Grotesk Book Dot
+  fontNames:
+  - Manifont Grotesk Book Dot
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 2a42e282d5bda4948862dd8f3b64b796, type: 3}
+  - {fileID: 12800000, guid: 7bdf33688ca837e4e8de64ddb6442663, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
