@@ -7,6 +7,8 @@ public class InteractionControls : MonoBehaviour
 	private InteractiveObject currentInteractiveObject;
 	private JumpControls jumpControls;
 
+	private bool interactionIsBlocked;
+
 	void Start()
 	{
 		this.jumpControls = GetComponent<JumpControls>();
@@ -14,9 +16,8 @@ public class InteractionControls : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space) && this.currentInteractiveObject != null)
+		if (Input.GetKeyDown(KeyCode.Space) && this.currentInteractiveObject != null && !this.interactionIsBlocked)
 		{
-			Debug.Log(this.currentInteractiveObject.name);
 			this.currentInteractiveObject.StartInteraction(gameObject);
 		}
 	}
@@ -34,16 +35,22 @@ public class InteractionControls : MonoBehaviour
 	void OnInteractiveObjectExit(GameObject interactionColliders)
 	{
 		this.currentInteractiveObject = null;
-
-		if (this.jumpControls != null)
-		{
-			this.jumpControls.enabled = true;
-		}
+		EnableJumpControls();
+		this.interactionIsBlocked = false;
 	}
 
 	void OnInteractionFinish()
 	{
 		this.currentInteractiveObject.ExitInteractiveZone();
-		this.currentInteractiveObject = null;
+		EnableJumpControls();
+		this.interactionIsBlocked = true;
+	}
+
+	private void EnableJumpControls()
+	{
+		if (this.jumpControls != null)
+		{
+			this.jumpControls.enabled = true;
+		}
 	}
 }
