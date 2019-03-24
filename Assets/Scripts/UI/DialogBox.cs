@@ -67,7 +67,7 @@ public class DialogBox : MonoBehaviour
 		gameObject.SetActive(false);
 		foreach (var root in gameObject.scene.GetRootGameObjects())
 		{
-			root.BroadcastMessage("OnDialogFinish");
+			root.BroadcastMessage("OnDialogFinish", SendMessageOptions.DontRequireReceiver);
 		}
 	}
 
