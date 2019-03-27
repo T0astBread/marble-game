@@ -230,6 +230,7 @@ public class JumpControls : MonoBehaviour
 	void DisableMovement()
 	{
 		this.jumpIsDisabled = true;
+		this.inputIsBuffered = false;
 	}
 
 	void EnableMovement()

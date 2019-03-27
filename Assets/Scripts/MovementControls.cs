@@ -71,12 +71,12 @@ public class MovementControls : MonoBehaviour
 	void DisableMovement()
 	{
 		this.movementIsDisabled = true;
-		this.rigidbody.velocity = Vector3.zero;
-		this.rigidbody.angularVelocity = Vector3.zero;
+		this.rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
 	}
 
 	void EnableMovement()
 	{
 		this.movementIsDisabled = false;
+		this.rigidbody.constraints = RigidbodyConstraints.None;
 	}
 }

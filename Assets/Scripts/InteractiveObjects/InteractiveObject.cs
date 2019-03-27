@@ -8,7 +8,7 @@ public abstract class InteractiveObject : MonoBehaviour
 
 	protected GameObject lastInteractor;
 
-	void Start()
+	public virtual void Start()
 	{
 		this.animator = GetComponent<Animator>();
 	}
