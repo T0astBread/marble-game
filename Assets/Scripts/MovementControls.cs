@@ -6,7 +6,9 @@ using UnityEngine;
 public class MovementControls : MonoBehaviour
 {
 	public float rollSpeed = 2000, airSpeed = 4000;
+	public bool movementIsDisabled;
 
+	[HideInInspector]
 	public float forwardAngle;
 
 	private new Rigidbody rigidbody;
@@ -20,6 +22,11 @@ public class MovementControls : MonoBehaviour
 
 	void FixedUpdate()
 	{
+		if (this.movementIsDisabled)
+		{
+			return;
+		}
+
 #if UNITY_EDITOR
 		DebugDrawForwardAngle();
 #endif
@@ -59,5 +66,17 @@ public class MovementControls : MonoBehaviour
 	{
 		var force = rotatedInput * this.airSpeed;
 		this.rigidbody.AddForce(force.x, 0, force.y);
+	}
+
+	void DisableMovement()
+	{
+		this.movementIsDisabled = true;
+		this.rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+	}
+
+	void EnableMovement()
+	{
+		this.movementIsDisabled = false;
+		this.rigidbody.constraints = RigidbodyConstraints.None;
 	}
 }

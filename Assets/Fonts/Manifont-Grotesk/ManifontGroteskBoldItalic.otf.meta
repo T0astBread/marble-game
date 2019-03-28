@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 3e1e2d9129cf9c54f81dd09c57bfa91c
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Manifont Grotesk
+  fontNames:
+  - Manifont Grotesk
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 02a236f293998fb439ec218b4bc6024d, type: 3}
+  - {fileID: 12800000, guid: 3734312e5cdfa164194fa2cf77255e22, type: 3}
+  - {fileID: 12800000, guid: 29cffd0fb22230d46831ed6a9f063b16, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
