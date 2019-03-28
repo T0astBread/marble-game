@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: MarbleNPC_AC
+  m_Controller: {fileID: 9100000, guid: a6320e16435f488439793ffcec07782c, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 036c0e54f43c9534283d8e710d0f2c0d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1da2cbf80b0bb4a4b9c36704abf78dc4, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 228e37d0211329a4eb25f8de4c329528, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 70f0a73a8fd7b8b46943ad130d1c9e9d, type: 2}
