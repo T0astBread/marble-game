@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 114581184662333196}
   - component: {fileID: 114065615070018940}
   - component: {fileID: 114913134070898540}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: InteractionColliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1502,14 +1502,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1791578032080614}
-  m_LocalRotation: {x: -0, y: 0.92387956, z: -0, w: 0.38268352}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.020000037, y: 0.02, z: 1}
   m_Children:
   - {fileID: 224914720925713308}
   m_Father: {fileID: 4424068157513432}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 1.5}
