@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 public class TextScreen : MonoBehaviour
 {
+	public UnityEvent revealStart, revealFinish;
+
 	private TextMeshProUGUI textMeshPro;
 	private bool accelerateRevealing;
 
@@ -27,6 +30,8 @@ public class TextScreen : MonoBehaviour
 
 	private IEnumerator RevealCharacters()
 	{
+		this.revealStart.Invoke();
+
 		this.textMeshPro.maxVisibleCharacters = 0;
 		while (this.textMeshPro.maxVisibleCharacters < this.textMeshPro.textInfo.characterCount)
 		{
@@ -42,6 +47,8 @@ public class TextScreen : MonoBehaviour
 				yield return new WaitForSecondsRealtime(.05f);
 			}
 		}
+
+		this.revealFinish.Invoke();
 	}
 
 	void Update()

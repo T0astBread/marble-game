@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114752878169631466}
   - component: {fileID: 114582824488075762}
   - component: {fileID: 114672639505888896}
+  - component: {fileID: 114659792690977688}
   m_Layer: 0
   m_Name: MarbleNPC
   m_TagString: Untagged
@@ -1112,6 +1113,17 @@ MonoBehaviour:
   dialog: {fileID: 0}
   slowTime: 0
   disableMovement: 1
+--- !u!114 &114659792690977688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1010007383805218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5696b354f55964c46bb765b810f17491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114672639505888896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1351,13 +1363,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114982851925911194}
-    characterCount: 0
+    characterCount: 5
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 2
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
