@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 114964504285268976}
   - component: {fileID: 114515588558999730}
   - component: {fileID: 114900342164369602}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: InteractionColliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
