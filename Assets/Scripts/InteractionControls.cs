@@ -24,8 +24,13 @@ public class InteractionControls : MonoBehaviour
 
 	void OnInteractiveObjectEnter(GameObject interactionColliders)
 	{
-		this.currentInteractiveObject = interactionColliders.GetComponentInParent<InteractiveObject>();
-
+		var interactiveObject = interactionColliders.GetComponentInParent<InteractiveObject>();
+		if (!interactiveObject.isActiveAndEnabled)
+		{
+			return;
+		}
+		
+		this.currentInteractiveObject = interactiveObject;
 		if (this.jumpControls != null)
 		{
 			this.jumpControls.enabled = false;
