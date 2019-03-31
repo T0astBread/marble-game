@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114593578038771412}
   - component: {fileID: 114111790989593806}
   - component: {fileID: 114397642263183146}
+  - component: {fileID: 114752878169631466}
   m_Layer: 0
   m_Name: MarbleNPC
   m_TagString: Untagged
@@ -1098,6 +1099,18 @@ MonoBehaviour:
   dialog: {fileID: 0}
   slowTime: 0
   disableMovement: 1
+--- !u!114 &114752878169631466
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1010007383805218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a40196878a1143c45ba431a3350e93c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationMultiplier: 100
 --- !u!114 &114769182058047498
 MonoBehaviour:
   m_ObjectHideFlags: 1
