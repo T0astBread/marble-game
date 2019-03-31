@@ -36,6 +36,6 @@ public class CameraRotation : MonoBehaviour
 
 	private void UpdatePlayerForward()
 	{
-		this.playerControls.forwardAngle = Vector2.SignedAngle(Vector2.up, new Vector2(transform.forward.x, transform.forward.z));
+		this.playerControls.forwardAngle = Vector2.SignedAngle(Vector2.up, transform.forward.ToXZ());
 	}
 }

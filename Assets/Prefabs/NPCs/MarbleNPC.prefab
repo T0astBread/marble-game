@@ -26,6 +26,8 @@ GameObject:
   - component: {fileID: 114111790989593806}
   - component: {fileID: 114397642263183146}
   - component: {fileID: 114752878169631466}
+  - component: {fileID: 114582824488075762}
+  - component: {fileID: 114672639505888896}
   m_Layer: 0
   m_Name: MarbleNPC
   m_TagString: Untagged
@@ -1085,6 +1087,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a793a3cda0d61894cb32b60fad12eca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114582824488075762
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1010007383805218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a55ca4624f718ab4cba70d5e9f26f03b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114593578038771412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1099,6 +1112,19 @@ MonoBehaviour:
   dialog: {fileID: 0}
   slowTime: 0
   disableMovement: 1
+--- !u!114 &114672639505888896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1010007383805218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e5a3503cda481a4e8d6a433e5d75199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minProximity: 7
+  rotationDegreesPerSec: 100
 --- !u!114 &114752878169631466
 MonoBehaviour:
   m_ObjectHideFlags: 1

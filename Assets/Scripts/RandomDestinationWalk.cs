@@ -11,6 +11,17 @@ public class RandomDestinationWalk : MonoBehaviour
 	private NavMeshAgent agent;
 	private Vector3 home;
 
+	private bool _isStopped;
+	public bool isStopped
+	{
+		get { return _isStopped; }
+		set
+		{
+			_isStopped = value;
+			this.agent.isStopped = value;
+		}
+	}
+
 	IEnumerator Start()
 	{
 		this.agent = GetComponent<NavMeshAgent>();
@@ -19,6 +30,11 @@ public class RandomDestinationWalk : MonoBehaviour
 		while (true)
 		{
 			yield return new WaitForSeconds(Random.Range(this.minSleepTime, this.maxSleepTime));
+
+			if (this.isStopped)
+			{
+				continue;
+			}
 
 			var destinationOffsetXZ = Random.insideUnitCircle * Random.value * this.maxHomeDistance;
 			var destination = this.home + new Vector3(destinationOffsetXZ.x, 0, destinationOffsetXZ.y);
