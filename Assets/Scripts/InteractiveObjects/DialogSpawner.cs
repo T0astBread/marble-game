@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(SlowMotion))]
 public class DialogSpawner : InteractiveObject
 {
-	public GameObject dialog;
+	public DialogBox dialog;
 	public bool slowTime, disableMovement;
 
 	private SlowMotion slowMotion;
@@ -20,7 +20,7 @@ public class DialogSpawner : InteractiveObject
 	override protected void Interact(GameObject interactor)
 	{
 		Debug.Log("A dialog was triggered by " + interactor.name);
-		this.dialog.SetActive(true);
+		this.dialog.gameObject.SetActive(true);
 
 		if (this.slowTime)
 		{
