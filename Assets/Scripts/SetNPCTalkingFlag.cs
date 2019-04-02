@@ -19,7 +19,7 @@ public class SetNPCTalkingFlag : MonoBehaviour
 			if (dialog != null)
 			{
 				dialog.dialogStart.AddListener(OnDialogStart);
-				dialog.dialogFinish.AddListener(ONDialogFinish);
+				dialog.dialogFinish.AddListener(OnDialogFinish);
 
 				var textScreens = dialog.screenContainer.GetComponentsInChildren<TextScreen>(true);
 				if (textScreens != null)
@@ -28,6 +28,8 @@ public class SetNPCTalkingFlag : MonoBehaviour
 					{
 						textScreen.revealStart.AddListener(OnTalkingStart);
 						textScreen.revealFinish.AddListener(OnTalkingEnd);
+						textScreen.revealAccelerationStart.AddListener(OnRevealAccelerationStart);
+						textScreen.revealAccelerationEnd.AddListener(OnRevealAccelerationEnd);
 						textScreen.emotionChange.AddListener(OnEmotionChange);
 					}
 				}
@@ -41,7 +43,7 @@ public class SetNPCTalkingFlag : MonoBehaviour
 		this.animator.SetInteger("talking_emotion", 0);
 	}
 
-	private void ONDialogFinish()
+	private void OnDialogFinish()
 	{
 		this.animator.SetBool("dialog_is_active", false);
 	}
@@ -69,5 +71,15 @@ public class SetNPCTalkingFlag : MonoBehaviour
 				break;
 		}
 		this.animator.SetInteger("talking_emotion", emotionID);
+	}
+
+	public void OnRevealAccelerationStart()
+	{
+		this.animator.SetBool("talking_is_accelerated", true);
+	}
+
+	public void OnRevealAccelerationEnd()
+	{
+		this.animator.SetBool("talking_is_accelerated", false);
 	}
 }

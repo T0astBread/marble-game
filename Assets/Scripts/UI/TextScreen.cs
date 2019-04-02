@@ -10,10 +10,27 @@ using System.Text.RegularExpressions;
 public class TextScreen : MonoBehaviour
 {
 	public UnityEvent revealStart, revealFinish;
+	public UnityEvent revealAccelerationStart, revealAccelerationEnd;
 	public UnityEvent<string> emotionChange = new StringUnityEvent();
 
 	private TextMeshProUGUI textMeshPro;
-	private bool accelerateRevealing;
+
+	private bool _accelerateRevealing;
+	private bool accelerateRevealing
+	{
+		get { return _accelerateRevealing; }
+		set
+		{
+			if (value != _accelerateRevealing)
+			{
+				if (value)
+					this.revealAccelerationStart.Invoke();
+				else
+					this.revealAccelerationEnd.Invoke();
+			}
+			_accelerateRevealing = value;
+		}
+	}
 
 	void Awake()
 	{
@@ -100,4 +117,4 @@ public class TextScreen : MonoBehaviour
 	}
 }
 
-public class StringUnityEvent : UnityEvent<string> {}
+public class StringUnityEvent : UnityEvent<string> { }
