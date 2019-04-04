@@ -2,15 +2,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-[ExecuteInEditMode]
 public class DialogBox : MonoBehaviour
 {
 	public int currentScreen = -1;
+	public UnityEvent dialogStart, dialogFinish;
 
-	private Transform screenContainer;
 	private bool currentScreenHasFinished;
 	private GameObject screenAdvanceIndicator;
+	
+	private Transform _screenContainer;
+	public Transform screenContainer
+	{
+		get
+		{
+			InitScreenContainer();
+			return _screenContainer;
+		}
+	}
+
 
 	void Start()
 	{
@@ -21,15 +32,11 @@ public class DialogBox : MonoBehaviour
 	{
 		this.currentScreen = 0;
 		this.currentScreenHasFinished = false;
+		this.dialogStart.Invoke();
 	}
 
 	void Update()
 	{
-		if (this.screenContainer == null)
-		{
-			this.screenContainer = transform.GetChild(0);
-		}
-
 		UpdateVisibleScreens();
 		bool isNotAtLastScreen = this.currentScreen < this.screenContainer.childCount - 1;
 		if (this.currentScreenHasFinished && Input.GetKeyDown(KeyCode.Space))
@@ -45,6 +52,14 @@ public class DialogBox : MonoBehaviour
 		}
 
 		this.screenAdvanceIndicator.SetActive(this.currentScreenHasFinished && isNotAtLastScreen);
+	}
+
+	private void InitScreenContainer()
+	{
+		if (this._screenContainer == null)
+		{
+			this._screenContainer = transform.GetChild(0);
+		}
 	}
 
 	private void UpdateVisibleScreens()
@@ -69,6 +84,7 @@ public class DialogBox : MonoBehaviour
 		{
 			root.BroadcastMessage("OnDialogFinish", SendMessageOptions.DontRequireReceiver);
 		}
+		this.dialogFinish.Invoke();
 	}
 
 	void OnScreenFinish()
