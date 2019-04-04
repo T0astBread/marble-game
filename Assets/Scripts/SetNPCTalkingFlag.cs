@@ -35,17 +35,21 @@ public class SetNPCTalkingFlag : MonoBehaviour
 				}
 			}
 		}
+
+		this.animator.SetLayerWeight(this.animator.GetLayerIndex("TalkingEmotionLayer"), 0);
 	}
 
 	private void OnDialogStart()
 	{
 		this.animator.SetBool("dialog_is_active", true);
 		this.animator.SetInteger("talking_emotion", 0);
+		this.animator.SetLayerWeight(this.animator.GetLayerIndex("TalkingEmotionLayer"), 1);
 	}
 
 	private void OnDialogFinish()
 	{
 		this.animator.SetBool("dialog_is_active", false);
+		this.animator.SetLayerWeight(this.animator.GetLayerIndex("TalkingEmotionLayer"), 0);
 	}
 
 	public void OnTalkingStart()
