@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class UpdateNPCTalkingAnimatorParams : MonoBehaviour
 {
+	private const int EMOTION_NEUTRAL = 0;
+
 	private Animator animator;
 	private DialogSpawner dialogSpawner;
 
@@ -42,13 +44,14 @@ public class UpdateNPCTalkingAnimatorParams : MonoBehaviour
 	private void OnDialogStart()
 	{
 		this.animator.SetBool("dialog_is_active", true);
-		this.animator.SetInteger("talking_emotion", 0);
+		SetTalkingEmotion(EMOTION_NEUTRAL);
 		SetTalkingEmotionLayerActive(true);
 	}
 
 	private void OnDialogFinish()
 	{
 		this.animator.SetBool("dialog_is_active", false);
+		SetTalkingEmotion(EMOTION_NEUTRAL);
 		SetTalkingEmotionLayerActive(false);
 	}
 
@@ -69,8 +72,13 @@ public class UpdateNPCTalkingAnimatorParams : MonoBehaviour
 
 	public void OnEmotionChange(string newEmotion)
 	{
+		SetTalkingEmotion(newEmotion);
+	}
+
+	private void SetTalkingEmotion(string emotionName)
+	{
 		int emotionID = 0;
-		switch (newEmotion)
+		switch (emotionName)
 		{
 			case "angry":
 				emotionID = 1;
@@ -79,6 +87,11 @@ public class UpdateNPCTalkingAnimatorParams : MonoBehaviour
 				emotionID = 2;
 				break;
 		}
+		SetTalkingEmotion(emotionID);
+	}
+
+	private void SetTalkingEmotion(int emotionID)
+	{
 		this.animator.SetInteger("talking_emotion", emotionID);
 	}
 
