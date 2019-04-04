@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetNPCTalkingFlag : MonoBehaviour
+public class UpdateNPCTalkingAnimatorParams : MonoBehaviour
 {
 	private Animator animator;
 	private DialogSpawner dialogSpawner;
@@ -36,20 +36,25 @@ public class SetNPCTalkingFlag : MonoBehaviour
 			}
 		}
 
-		this.animator.SetLayerWeight(this.animator.GetLayerIndex("TalkingEmotionLayer"), 0);
+		SetTalkingEmotionLayerActive(false);
 	}
 
 	private void OnDialogStart()
 	{
 		this.animator.SetBool("dialog_is_active", true);
 		this.animator.SetInteger("talking_emotion", 0);
-		this.animator.SetLayerWeight(this.animator.GetLayerIndex("TalkingEmotionLayer"), 1);
+		SetTalkingEmotionLayerActive(true);
 	}
 
 	private void OnDialogFinish()
 	{
 		this.animator.SetBool("dialog_is_active", false);
-		this.animator.SetLayerWeight(this.animator.GetLayerIndex("TalkingEmotionLayer"), 0);
+		SetTalkingEmotionLayerActive(false);
+	}
+
+	private void SetTalkingEmotionLayerActive(bool active)
+	{
+		this.animator.SetLayerWeight(this.animator.GetLayerIndex("TalkingEmotionLayer"), active ? 1 : 0);
 	}
 
 	public void OnTalkingStart()
