@@ -18,6 +18,13 @@ ModelImporter:
     100024: Isle Source
     100026: Isle Subsurf applied
     100028: Sun.001
+    100030: Empty
+    100032: Isle 1
+    100034: Track 1
+    100036: Track 1 - Curve
+    100038: Track 1 - Road
+    100040: Isle 1.001
+    100042: Isle 2
     400000: //RootNode
     400002: Camera
     400004: Cylinder
@@ -33,6 +40,13 @@ ModelImporter:
     400024: Isle Source
     400026: Isle Subsurf applied
     400028: Sun.001
+    400030: Empty
+    400032: Isle 1
+    400034: Track 1
+    400036: Track 1 - Curve
+    400038: Track 1 - Road
+    400040: Isle 1.001
+    400042: Isle 2
     2000000: Camera
     2100000: No Name
     2100002: Material.001
@@ -45,6 +59,7 @@ ModelImporter:
     2100016: Dirt.001
     2100018: Grass.001
     2100020: Grass2Dirt
+    2100022: Grass2Dirt.001
     2300000: Cylinder
     2300002: Cube
     2300004: Roof
@@ -52,6 +67,11 @@ ModelImporter:
     2300008: Stove
     2300010: Isle Source
     2300012: Isle Subsurf applied
+    2300014: Isle 1
+    2300016: Track 1 - Curve
+    2300018: Track 1 - Road
+    2300020: Isle 1.001
+    2300022: Isle 2
     3300000: Cylinder
     3300002: Cube
     3300004: Roof
@@ -59,6 +79,11 @@ ModelImporter:
     3300008: Stove
     3300010: Isle Source
     3300012: Isle Subsurf applied
+    3300014: Isle 1
+    3300016: Track 1 - Curve
+    3300018: Track 1 - Road
+    3300020: Isle 1.001
+    3300022: Isle 2
     4300000: Cylinder
     4300002: Cube
     4300004: Roof
@@ -66,6 +91,11 @@ ModelImporter:
     4300008: Stove
     4300010: Isle Source
     4300012: Isle Subsurf applied
+    4300014: Track 1 - Curve
+    4300016: Track 1 - Road
+    4300018: Isle 1
+    4300020: Isle 1.001
+    4300022: Isle 2
     6400000: Cylinder
     6400002: Cube
     6400004: Roof
@@ -73,17 +103,23 @@ ModelImporter:
     6400008: Stove
     6400010: Isle Source
     6400012: Isle Subsurf applied
+    6400014: Isle 1
+    6400016: Track 1 - Curve
+    6400018: Track 1 - Road
+    6400020: Isle 1.001
+    6400022: Isle 2
     10800000: Lamp
     10800002: Sun
     10800004: Area
     10800006: Point
     10800008: Sun.001
+    2186277476908879412: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Dirt
-    second: {fileID: 2100000, guid: 213111c79ed220b488488ee78e8a3d33, type: 2}
+    second: {fileID: 2100000, guid: 08af850c836617f4fb5d0820e5361081, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -93,7 +129,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Grass
-    second: {fileID: 2100000, guid: 73bed47b0250fc14b9ecfb9ad7c99fac, type: 2}
+    second: {fileID: 2100000, guid: 4d796ba3c2d80024f9059f53d63c5476, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -103,7 +139,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Grass2Dirt
-    second: {fileID: 2100000, guid: 7d02877bb4ed5464988967a45a4c0a49, type: 2}
+    second: {fileID: 2100000, guid: 69f93f44877f70047902a016c69d4f7b, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -139,8 +175,8 @@ ModelImporter:
     addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -159,7 +195,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 3
+    tangentImportMode: 0
     normalCalculationMode: 4
   importAnimation: 1
   copyAvatar: 0
