@@ -25,6 +25,15 @@ ModelImporter:
     100038: Track 1 - Road
     100040: Isle 1.001
     100042: Isle 2
+    100044: Sphere
+    100046: Bush 1
+    100048: Bush 1.001
+    100050: Bush 1.002
+    100052: Bush 1.003
+    100054: Bush 1.004
+    100056: Bush 1.005
+    100058: Empty.001
+    100060: Plane
     400000: //RootNode
     400002: Camera
     400004: Cylinder
@@ -47,6 +56,15 @@ ModelImporter:
     400038: Track 1 - Road
     400040: Isle 1.001
     400042: Isle 2
+    400044: Sphere
+    400046: Bush 1
+    400048: Bush 1.001
+    400050: Bush 1.002
+    400052: Bush 1.003
+    400054: Bush 1.004
+    400056: Bush 1.005
+    400058: Empty.001
+    400060: Plane
     2000000: Camera
     2100000: No Name
     2100002: Material.001
@@ -60,6 +78,12 @@ ModelImporter:
     2100018: Grass.001
     2100020: Grass2Dirt
     2100022: Grass2Dirt.001
+    2100024: Bush
+    2100026: Bush.001
+    2100028: Bush.002
+    2100030: Bush.003
+    2100032: Bush.004
+    2100034: Bush.005
     2300000: Cylinder
     2300002: Cube
     2300004: Roof
@@ -72,6 +96,14 @@ ModelImporter:
     2300018: Track 1 - Road
     2300020: Isle 1.001
     2300022: Isle 2
+    2300024: Sphere
+    2300026: Bush 1
+    2300028: Bush 1.001
+    2300030: Bush 1.002
+    2300032: Bush 1.003
+    2300034: Bush 1.004
+    2300036: Bush 1.005
+    2300038: Plane
     3300000: Cylinder
     3300002: Cube
     3300004: Roof
@@ -84,6 +116,14 @@ ModelImporter:
     3300018: Track 1 - Road
     3300020: Isle 1.001
     3300022: Isle 2
+    3300024: Sphere
+    3300026: Bush 1
+    3300028: Bush 1.001
+    3300030: Bush 1.002
+    3300032: Bush 1.003
+    3300034: Bush 1.004
+    3300036: Bush 1.005
+    3300038: Plane
     4300000: Cylinder
     4300002: Cube
     4300004: Roof
@@ -96,6 +136,14 @@ ModelImporter:
     4300018: Isle 1
     4300020: Isle 1.001
     4300022: Isle 2
+    4300024: Sphere
+    4300026: Bush 1
+    4300028: Bush 1.001
+    4300030: Bush 1.002
+    4300032: Bush 1.003
+    4300034: Bush 1.004
+    4300036: Bush 1.005
+    4300038: Plane
     6400000: Cylinder
     6400002: Cube
     6400004: Roof
@@ -108,6 +156,14 @@ ModelImporter:
     6400018: Track 1 - Road
     6400020: Isle 1.001
     6400022: Isle 2
+    6400024: Sphere
+    6400026: Bush 1
+    6400028: Bush 1.001
+    6400030: Bush 1.002
+    6400032: Bush 1.003
+    6400034: Bush 1.004
+    6400036: Bush 1.005
+    6400038: Plane
     10800000: Lamp
     10800002: Sun
     10800004: Area
