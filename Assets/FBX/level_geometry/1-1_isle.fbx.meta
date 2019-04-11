@@ -34,6 +34,7 @@ ModelImporter:
     100056: Bush 1.005
     100058: Empty.001
     100060: Plane
+    100062: Cube.001
     400000: //RootNode
     400002: Camera
     400004: Cylinder
@@ -65,6 +66,7 @@ ModelImporter:
     400056: Bush 1.005
     400058: Empty.001
     400060: Plane
+    400062: Cube.001
     2000000: Camera
     2100000: No Name
     2100002: Material.001
@@ -104,6 +106,7 @@ ModelImporter:
     2300034: Bush 1.004
     2300036: Bush 1.005
     2300038: Plane
+    2300040: Cube.001
     3300000: Cylinder
     3300002: Cube
     3300004: Roof
@@ -124,6 +127,7 @@ ModelImporter:
     3300034: Bush 1.004
     3300036: Bush 1.005
     3300038: Plane
+    3300040: Cube.001
     4300000: Cylinder
     4300002: Cube
     4300004: Roof
@@ -144,6 +148,7 @@ ModelImporter:
     4300034: Bush 1.004
     4300036: Bush 1.005
     4300038: Plane
+    4300040: Cube.001
     6400000: Cylinder
     6400002: Cube
     6400004: Roof
@@ -164,6 +169,7 @@ ModelImporter:
     6400034: Bush 1.004
     6400036: Bush 1.005
     6400038: Plane
+    6400040: Cube.001
     10800000: Lamp
     10800002: Sun
     10800004: Area
