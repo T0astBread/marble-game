@@ -55,6 +55,13 @@ ModelImporter:
     100098: Platform 2
     100100: Platform 3
     100102: Platform 3 Offset
+    100104: Platform 4
+    100106: Platform 4 Offset
+    100108: Track 4
+    100110: Track 4 - Curve
+    100112: Track 4 - Road
+    100114: Track 4 - Road - End Ca
+    100116: Track 4 - Road - Start Cap
     400000: //RootNode
     400002: Camera
     400004: Cylinder
@@ -107,6 +114,13 @@ ModelImporter:
     400098: Platform 2
     400100: Platform 3
     400102: Platform 3 Offset
+    400104: Platform 4
+    400106: Platform 4 Offset
+    400108: Track 4
+    400110: Track 4 - Curve
+    400112: Track 4 - Road
+    400114: Track 4 - Road - End Ca
+    400116: Track 4 - Road - Start Cap
     2000000: Camera
     2100000: No Name
     2100002: Material.001
@@ -163,6 +177,11 @@ ModelImporter:
     2300068: Platform 1
     2300070: Platform 2
     2300072: Platform 3
+    2300074: Platform 4
+    2300076: Track 4 - Curve
+    2300078: Track 4 - Road
+    2300080: Track 4 - Road - End Ca
+    2300082: Track 4 - Road - Start Cap
     3300000: Cylinder
     3300002: Cube
     3300004: Roof
@@ -200,6 +219,11 @@ ModelImporter:
     3300068: Platform 1
     3300070: Platform 2
     3300072: Platform 3
+    3300074: Platform 4
+    3300076: Track 4 - Curve
+    3300078: Track 4 - Road
+    3300080: Track 4 - Road - End Ca
+    3300082: Track 4 - Road - Start Cap
     4300000: Cylinder
     4300002: Cube
     4300004: Roof
@@ -237,6 +261,11 @@ ModelImporter:
     4300068: Platform 1
     4300070: Platform 2
     4300072: Platform 3
+    4300074: Platform 4
+    4300076: Track 4 - Curve
+    4300078: Track 4 - Road - End Ca
+    4300080: Track 4 - Road - Start Cap
+    4300082: Track 4 - Road
     6400000: Cylinder
     6400002: Cube
     6400004: Roof
@@ -274,6 +303,11 @@ ModelImporter:
     6400068: Platform 1
     6400070: Platform 2
     6400072: Platform 3
+    6400074: Platform 4
+    6400076: Track 4 - Curve
+    6400078: Track 4 - Road
+    6400080: Track 4 - Road - End Ca
+    6400082: Track 4 - Road - Start Cap
     10800000: Lamp
     10800002: Sun
     10800004: Area
