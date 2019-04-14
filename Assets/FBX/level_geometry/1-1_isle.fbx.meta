@@ -41,6 +41,20 @@ ModelImporter:
     100070: Track 2 - Road
     100072: Track 2 - Road - End Cap
     100074: Track 2 - Road - Start Cap
+    100076: Track 2 - Curve.002
+    100078: Track 2 - Road - End Cap.002
+    100080: Track 2 - Road - Start Cap.002
+    100082: Track 2 - Road.002
+    100084: Track 2.002
+    100086: Track 3
+    100088: Track 3 - Curve
+    100090: Track 3 - Road
+    100092: Track 3 - Road - End Cap
+    100094: Track 3 - Road - Start Cap
+    100096: Platform 1
+    100098: Platform 2
+    100100: Platform 3
+    100102: Platform 3 Offset
     400000: //RootNode
     400002: Camera
     400004: Cylinder
@@ -79,6 +93,20 @@ ModelImporter:
     400070: Track 2 - Road
     400072: Track 2 - Road - End Cap
     400074: Track 2 - Road - Start Cap
+    400076: Track 2 - Curve.002
+    400078: Track 2 - Road - End Cap.002
+    400080: Track 2 - Road - Start Cap.002
+    400082: Track 2 - Road.002
+    400084: Track 2.002
+    400086: Track 3
+    400088: Track 3 - Curve
+    400090: Track 3 - Road
+    400092: Track 3 - Road - End Cap
+    400094: Track 3 - Road - Start Cap
+    400096: Platform 1
+    400098: Platform 2
+    400100: Platform 3
+    400102: Platform 3 Offset
     2000000: Camera
     2100000: No Name
     2100002: Material.001
@@ -124,6 +152,17 @@ ModelImporter:
     2300046: Track 2 - Road
     2300048: Track 2 - Road - End Cap
     2300050: Track 2 - Road - Start Cap
+    2300052: Track 2 - Curve.002
+    2300054: Track 2 - Road - End Cap.002
+    2300056: Track 2 - Road - Start Cap.002
+    2300058: Track 2 - Road.002
+    2300060: Track 3 - Curve
+    2300062: Track 3 - Road
+    2300064: Track 3 - Road - End Cap
+    2300066: Track 3 - Road - Start Cap
+    2300068: Platform 1
+    2300070: Platform 2
+    2300072: Platform 3
     3300000: Cylinder
     3300002: Cube
     3300004: Roof
@@ -150,6 +189,17 @@ ModelImporter:
     3300046: Track 2 - Road
     3300048: Track 2 - Road - End Cap
     3300050: Track 2 - Road - Start Cap
+    3300052: Track 2 - Curve.002
+    3300054: Track 2 - Road - End Cap.002
+    3300056: Track 2 - Road - Start Cap.002
+    3300058: Track 2 - Road.002
+    3300060: Track 3 - Curve
+    3300062: Track 3 - Road
+    3300064: Track 3 - Road - End Cap
+    3300066: Track 3 - Road - Start Cap
+    3300068: Platform 1
+    3300070: Platform 2
+    3300072: Platform 3
     4300000: Cylinder
     4300002: Cube
     4300004: Roof
@@ -176,6 +226,17 @@ ModelImporter:
     4300046: Track 2 - Road
     4300048: Track 2 - Road - Start Cap
     4300050: Track 2 - Road - End Cap
+    4300052: Track 3 - Curve
+    4300054: Track 3 - Road - End Cap
+    4300056: Track 3 - Road - Start Cap
+    4300058: Track 3 - Road
+    4300060: Track 2 - Curve.002
+    4300062: Track 2 - Road - End Cap.002
+    4300064: Track 2 - Road - Start Cap.002
+    4300066: Track 2 - Road.002
+    4300068: Platform 1
+    4300070: Platform 2
+    4300072: Platform 3
     6400000: Cylinder
     6400002: Cube
     6400004: Roof
@@ -202,6 +263,17 @@ ModelImporter:
     6400046: Track 2 - Road
     6400048: Track 2 - Road - End Cap
     6400050: Track 2 - Road - Start Cap
+    6400052: Track 2 - Curve.002
+    6400054: Track 2 - Road - End Cap.002
+    6400056: Track 2 - Road - Start Cap.002
+    6400058: Track 2 - Road.002
+    6400060: Track 3 - Curve
+    6400062: Track 3 - Road
+    6400064: Track 3 - Road - End Cap
+    6400066: Track 3 - Road - Start Cap
+    6400068: Platform 1
+    6400070: Platform 2
+    6400072: Platform 3
     10800000: Lamp
     10800002: Sun
     10800004: Area
