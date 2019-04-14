@@ -35,6 +35,12 @@ ModelImporter:
     100058: Empty.001
     100060: Plane
     100062: Cube.001
+    100064: Cube.002
+    100066: Track 2
+    100068: Track 2 - Curve
+    100070: Track 2 - Road
+    100072: Track 2 - Road - End Cap
+    100074: Track 2 - Road - Start Cap
     400000: //RootNode
     400002: Camera
     400004: Cylinder
@@ -67,6 +73,12 @@ ModelImporter:
     400058: Empty.001
     400060: Plane
     400062: Cube.001
+    400064: Cube.002
+    400066: Track 2
+    400068: Track 2 - Curve
+    400070: Track 2 - Road
+    400072: Track 2 - Road - End Cap
+    400074: Track 2 - Road - Start Cap
     2000000: Camera
     2100000: No Name
     2100002: Material.001
@@ -107,6 +119,11 @@ ModelImporter:
     2300036: Bush 1.005
     2300038: Plane
     2300040: Cube.001
+    2300042: Cube.002
+    2300044: Track 2 - Curve
+    2300046: Track 2 - Road
+    2300048: Track 2 - Road - End Cap
+    2300050: Track 2 - Road - Start Cap
     3300000: Cylinder
     3300002: Cube
     3300004: Roof
@@ -128,6 +145,11 @@ ModelImporter:
     3300036: Bush 1.005
     3300038: Plane
     3300040: Cube.001
+    3300042: Cube.002
+    3300044: Track 2 - Curve
+    3300046: Track 2 - Road
+    3300048: Track 2 - Road - End Cap
+    3300050: Track 2 - Road - Start Cap
     4300000: Cylinder
     4300002: Cube
     4300004: Roof
@@ -149,6 +171,11 @@ ModelImporter:
     4300036: Bush 1.005
     4300038: Plane
     4300040: Cube.001
+    4300042: Cube.002
+    4300044: Track 2 - Curve
+    4300046: Track 2 - Road
+    4300048: Track 2 - Road - Start Cap
+    4300050: Track 2 - Road - End Cap
     6400000: Cylinder
     6400002: Cube
     6400004: Roof
@@ -170,6 +197,11 @@ ModelImporter:
     6400036: Bush 1.005
     6400038: Plane
     6400040: Cube.001
+    6400042: Cube.002
+    6400044: Track 2 - Curve
+    6400046: Track 2 - Road
+    6400048: Track 2 - Road - End Cap
+    6400050: Track 2 - Road - Start Cap
     10800000: Lamp
     10800002: Sun
     10800004: Area
